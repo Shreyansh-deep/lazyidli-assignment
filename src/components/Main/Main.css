@@ -1,0 +1,94 @@
+
+.top-bar {
+    background: linear-gradient(to bottom, #030000, #1e1e1f);
+    padding: 10px;
+    text-align: center;
+    display: flex;
+    justify-content: space-evenly;
+  }
+  
+  .top-bar-text {
+    margin: 0;
+    font-size: 3rem;
+    color: #fff; 
+    text-shadow: 0 0 4px #fff, 0 0 10px #fff, 0 0 2px #fff; 
+    padding: 0 15px;
+    font-style: italic;
+  }
+  .left-lines-container, .right-lines-container{
+    display: flex;
+    flex-direction: column;
+    width: 22vw;
+    gap: 10px;
+    justify-content: center;
+  }
+  .left-line {
+    border: 2px solid #f8990b;
+    border-radius: 5px;
+  }
+.right-line{
+    border: 2px solid rgb(13, 192, 220);
+    border-radius: 5px;
+}
+.leader-board{
+    background-image: url("../../assets/image\ 65\ \(1\).png");
+    height: 100%;
+    padding: 20px;
+    background-size: cover; 
+  background-repeat: no-repeat;
+
+}
+.leader-board-navbar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #f8990b;
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 10px;
+}
+.name-container-navbar{
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    font-size: 30px;
+    margin-left: 20px;
+    font-weight: 600;
+}
+.time-conatainer-navbar{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 30px;
+    margin-right: 30px;
+    font-weight: 600;
+}
+.first-row{
+    display: flex;
+    justify-content: space-between;
+    background: linear-gradient(to right bottom, #bd9536, white);
+    border-radius: 0 0 70px 0;
+    margin-top: 10px;
+    border: 1px solid black;
+}
+.time-container{
+    display: flex;
+    align-items: center;
+    gap: 60px;
+    margin-right: 30px;
+    font-size: 30px;
+    font-weight: 600;
+}
+.name-container{
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    margin-left: 30px;
+    font-size: 30px;
+    font-weight: 600;
+}
+.number{
+    background-color: #1e1e1f;
+    padding: 20px;
+    border-radius: 0 0 20px 0;
+    color: #e8bf61;
+}

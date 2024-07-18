@@ -1,0 +1,22 @@
+.navbar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px max(8%,40px);
+    background-color: #181818;
+    color: white;
+    font-family: 'Segoe UI', sans-serif;
+}
+.left-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.company-name{
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 0;
+}
+.sub-name{
+    margin: 0;
+}
