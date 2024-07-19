@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./AddScore.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { v4 as uuidv4 } from 'uuid';
+
 
 const AddScore = ({ setToggleAdd, data, setData, setRecentEntry }) => {
   const [time, setTime] = useState();
