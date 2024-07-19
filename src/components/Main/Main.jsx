@@ -35,7 +35,7 @@ const Main = () => {
       rowElement.style.boxShadow =
         "0 0 10px #2cced6, 0 0 10px #2cced6, 0 0 10px #2cced6";
     }
-  }, [recentEntry]);
+  }, [recentEntry, data]);
 
   return (
     <div className="main">
