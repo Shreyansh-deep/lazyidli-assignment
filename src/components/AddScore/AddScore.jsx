@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import "./AddScore.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { v4 as uuidv4 } from 'uuid';
 
-const AddScore = ({ setToggleAdd }) => {
+const AddScore = ({ setToggleAdd, data, setData, setRecentEntry }) => {
   const [time, setTime] = useState();
   const [name, setName] = useState("");
   const [error, setError] = useState(null);
@@ -35,8 +36,26 @@ const AddScore = ({ setToggleAdd }) => {
         toast("Invalid time format. Please use MM:SS:MMS");
       }
     } else {
-      const score = { name, time };
-      console.log(score);
+      const newData = {
+        id: data.length + 1,
+        name,
+        time,
+      };
+      setRecentEntry(newData)
+      const updatedData = [...data, newData];
+      setData(
+        updatedData.sort((a, b) => {
+          const timeA = a.time.split(":").map(Number);
+          const timeB = b.time.split(":").map(Number);
+          if (timeA[0] < timeB[0]) return -1;
+          if (timeA[0] > timeB[0]) return 1;
+          if (timeA[1] < timeB[1]) return -1;
+          if (timeA[1] > timeB[1]) return 1;
+          if (timeA[2] < timeB[2]) return -1;
+          if (timeA[2] > timeB[2]) return 1;
+          return 0;
+        })
+      );
       toast("Score added successfully!");
       setTimeout(() => {
         setToggleAdd(false);

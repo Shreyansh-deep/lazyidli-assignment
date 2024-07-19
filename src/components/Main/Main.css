@@ -1,3 +1,7 @@
+.main{
+  transition: ease-in 5s;
+}
+
 .top-bar {
   background: linear-gradient(to bottom, #030000, #1e1e1f);
   padding: 10px;
@@ -140,12 +144,14 @@
     font-weight: 600;
     text-shadow: 0 0 4px #fff, 0 0 10px #fff, 0 0 2px #fff;
     padding-left: 30px;
+    margin: 0;
 }
 .recent-entry-container{
     background: rgba(57, 81, 88, 0.7);
     border: 1px solid rgb(22, 222, 248);
     border-right: none;
     border-left: none;
+    padding: 10px;
 }
 .break{
   border: 1px solid gray
@@ -157,7 +163,7 @@
   justify-content: end;
 }
 .addScore-btn{
-  background: linear-gradient(to left, #19b9d5, #48b2dc);
+  background: linear-gradient(to right, #03c8eb, #c3f5f9);
   padding: 4px;
   border-radius: 5px;
   font-weight: 600;

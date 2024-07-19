@@ -1,13 +1,42 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Main.css";
 import { IoMdTrophy } from "react-icons/io";
 import { FaStopwatch } from "react-icons/fa6";
-import data from "../../data.json";
+import rawData from "../../data.json";
 import Carousel from "../../utils/carousel/carousel";
 import AddScore from "../AddScore/AddScore";
 
 const Main = () => {
   const [toggleAdd, setToggleAdd] = useState(false);
+  const [recentEntry, setRecentEntry] = useState({});
+  const [data, setData] = useState(
+    rawData.sort((a, b) => {
+      const timeA = a.time.split(":").map(Number);
+      const timeB = b.time.split(":").map(Number);
+
+      if (timeA[0] < timeB[0]) return -1;
+      if (timeA[0] > timeB[0]) return 1;
+      if (timeA[1] < timeB[1]) return -1;
+      if (timeA[1] > timeB[1]) return 1;
+      if (timeA[2] < timeB[2]) return -1;
+      if (timeA[2] > timeB[2]) return 1;
+      return 0;
+    })
+  );
+
+
+  useEffect(() => {
+    const recentEntryIndex = data.findIndex(
+      (item) => item.id === recentEntry.id
+    );
+    if (recentEntryIndex !== -1) {
+      const rowElement = document.getElementById(`row-${recentEntryIndex + 1}`);
+      rowElement.scrollIntoView({ behavior: "smooth" });
+      rowElement.style.boxShadow =
+        "0 0 10px #2cced6, 0 0 10px #2cced6, 0 0 10px #2cced6";
+    }
+  }, [recentEntry]);
+
   return (
     <div className="main">
       <div className="top-bar">
@@ -25,10 +54,17 @@ const Main = () => {
       </div>
       <div className="break"></div>
       {toggleAdd ? (
-        <AddScore setToggleAdd={setToggleAdd} />
+        <AddScore
+          setToggleAdd={setToggleAdd}
+          setData={setData}
+          data={data}
+          setRecentEntry={setRecentEntry}
+        />
       ) : (
         <div className="addScore-btn-container">
-          <button onClick={() => setToggleAdd(true)} className="addScore-btn">Add Score</button>
+          <button onClick={() => setToggleAdd(true)} className="addScore-btn">
+            Add Score
+          </button>
         </div>
       )}
       <div className="leader-board">
@@ -42,41 +78,20 @@ const Main = () => {
             <p>TIME</p>
           </div>
         </div>
-        <div className="first-row">
-          <div className="name-container">
-            <div className="number1">1</div>
-            <p>Anjum</p>
-          </div>
-          <div className="time-container">
-            <p>₹50000</p>
-            <p>00:00:00</p>
-          </div>
-        </div>
-        <div className="second-row">
-          <div className="name-container">
-            <div className="number2">2</div>
-            <p>Raaju</p>
-          </div>
-          <div className="time-container">
-            <p>₹5000</p>
-            <p>00:00:00</p>
-          </div>
-        </div>
-        <div className="third-row">
-          <div className="name-container">
-            <div className="number3">3</div>
-            <p>Shyam</p>
-          </div>
-          <div className="time-container">
-            <p>₹500</p>
-            <p>00:00:00</p>
-          </div>
-        </div>
-        {data.map((item) => {
+        {data.slice(0, 3).map((item, index) => {
           return (
-            <div className="row">
+            <div
+              id={`row-${index + 1}`}
+              className={`${
+                index === 0
+                  ? "first-row"
+                  : index === 1
+                  ? "second-row"
+                  : "third-row"
+              }`}
+            >
               <div className="name-container">
-                <div className="numberX">{item.id + 3}</div>
+                <div className={`number${index + 1}`}>{index + 1}</div>
                 <p>{item.name}</p>
               </div>
               <div className="time-container">
@@ -85,23 +100,19 @@ const Main = () => {
             </div>
           );
         })}
-        <div className="recent-entry-container">
-          <p className="recent-entry-text">RECENT ENTRY</p>
-          <div
-            className="row"
-            style={{
-              boxShadow: "0 0 4px #2cced6, 0 0 10px #2cced6, 0 0 2px #2cced6",
-            }}
-          >
-            <div className="name-container">
-              <div className="numberX">34</div>
-              <p>Kilwish</p>
+        {data.slice(3).map((item, index) => {
+          return (
+            <div id={`row-${index + 4}`} className="row">
+              <div className="name-container">
+                <div className="numberX">{index + 4}</div>
+                <p>{item.name}</p>
+              </div>
+              <div className="time-container">
+                <p>{item.time}</p>
+              </div>
             </div>
-            <div className="time-container">
-              <p>00:00:00</p>
-            </div>
-          </div>
-        </div>
+          );
+        })}
       </div>
       <div className="carousel-container">
         {" "}
